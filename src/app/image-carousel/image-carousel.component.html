@@ -1,0 +1,49 @@
+<div class="card" #playButton>
+  <p-carousel
+  
+    *ngIf="showData"
+    [value]="albumBanners"
+    [numVisible]="8"
+    [numScroll]="8"
+    [circular]="true"
+    [responsiveOptions]="responsiveOptions"
+    autoPlayInterval="3000"
+  >
+    <ng-template let-albumUrl pTemplate="item">
+      <div
+        class="border-1 surface-border border-round m-2 text-center py-5 px-3"
+      >
+        <div class="mb-3">
+          <button
+            
+            (click)="handlePlay()"
+            class="play-button"
+            style="cursor: pointer"
+          >
+            <img
+              style="height: 150px; width: 150px"
+              src="{{ albumUrl }}"
+              [alt]="'banner'"
+              class="w-6 mx-3 shadow-2"
+            />
+            <div class="play-and-pause" (click)="togglePlay()">
+              <div *ngIf="isPaused; else isPlaying">
+                <i
+                  class="pi pi-play"
+                  style="font-size: 1.5rem; color: antiquewhite"
+                ></i>
+              </div>
+              <ng-template #isPlaying>
+                <i
+                  class="pi pi-pause"
+                  style="font-size: 1.5rem; color: antiquewhite"
+                ></i>
+              </ng-template>
+            </div>
+          </button>
+        </div>
+        <div></div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>

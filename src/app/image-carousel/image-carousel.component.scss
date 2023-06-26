@@ -1,0 +1,26 @@
+
+.play-button :hover  {
+    opacity: 0.5;
+}
+
+.play-button:hover .play-and-pause{
+    display: block;
+}
+.play-button{
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    position: relative;
+}
+
+.play-and-pause{
+    position: absolute;
+    top: 37%;
+    left: 37%;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: #343a40;
+    display: none
+}
+

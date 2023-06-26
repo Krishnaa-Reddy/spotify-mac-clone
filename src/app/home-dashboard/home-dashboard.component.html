@@ -1,0 +1,61 @@
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile
+      *ngFor="let card of cards | async; let i = index"
+      [colspan]="card.cols"
+      [rowspan]="card.rows"
+    >
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ card.title }}
+            <button
+              mat-icon-button
+              class="more-button"
+              [matMenuTriggerFor]="menu"
+              aria-label="Toggle menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content
+          class="dashboard-card-content"
+          [ngClass]="{ 'firstcard': i==0,  'm-bottom': i==2}"
+        >
+          <app-image-carousel *ngIf="i==0"></app-image-carousel>
+          <div
+            ngClass="m-bottom"
+            *ngIf="i == 1"
+            style="
+              display: flex;
+              justify-content: center;
+              word-wrap: break-word;
+              flex-direction: column;
+            "
+          >
+            <button
+              mat-stroked-button
+              style="margin: 10px"
+              (click)="getToken($event)"
+            >
+              Get User Token
+            </button>
+            <span>{{ access_token | json }} </span>
+          </div>
+          <div *ngIf="i == 2">
+            <div
+              style="border: 1px solid black; padding: 8px; margin-top: 2px"
+            >
+              Hi
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
